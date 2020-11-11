@@ -1,0 +1,45 @@
+<h2 class="mb-4"style= "color: white;"><%= @category.name%></h2>
+
+<div id="posts-index">
+  <%if @posts.exists?%>
+    <% @posts.each_slice(2) do |post|%>
+      <div class ="row">
+        <% post.each do |post|%>
+          <div class ="col-md-6">
+
+            <div class="post">
+              <%= image_tag post.image.url, width: '100%'%>
+              <div class="post-content">
+                <h3><%= post.title%></h3>
+                <small class="mb-2 text-muted">Posted by <%= post.user.name%> on <%= post.created_at.to_time.strftime('%B %e at %l:%M %p')%></small>
+
+                <%= truncate(strip_tags(post.body.to_s), length: 200)%>
+                
+                <div class="mdc-card__actions mt-2">
+                  <div class="mdc-card__action-buttons">
+                    <button onclick="location.href='<%= post_path(post)%>'" class="mdc-button mdc-card__action mdc-card__action--button" type="button">
+                      <div class="mdc-button__ripple"></div>
+                        <span class="mdc-button__label">Read</span>
+                    </button>
+                    <button onclick="location.href='<%= about_path%>'" class="mdc-button mdc-card__action mdc-card__action--button" type="button">
+                      <div class="mdc-button__ripple"></div>
+                        <span class="mdc-button__label">Bookmark</span>
+                    </button>
+                  </div>
+                  <div class="mdc-card__action-icons">
+                    <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+                    <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end%>
+      </div>
+
+      <br>
+    <%end%>
+  <%else%>
+  <p> No posts  yet...</p>  
+  <%end%>
+</div>

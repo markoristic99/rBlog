@@ -1,0 +1,26 @@
+<div class ="m-3">
+<h2 class="ml-4">Manage categories <%= link_to "Create new", new_admin_category_path, class:'btn btn-success float-right mr-4'%></h2>
+
+<br>
+
+<table class = "table table-striped shadow-sm">
+    <tr>
+        <th>Category title</th>
+        <th>Date created</th>
+        <th>Manager controlls</th>
+    </tr>
+
+    <% @categories.each do |category|%>
+
+    <tr>
+        <td><%= category.name%></td>
+        <td><%= category.created_at.to_time.strftime('%B %e at %l:%M %p')%></td>
+        <td><%= link_to "Edit", edit_admin_category_path(category), class: 'btn btn-warning'%> <%= link_to "Delete", admin_category_path(category), class: 'btn btn-danger', method: :delete, 
+                                            data: {confirm: 'Are you sure?'}%></td>
+    </tr>
+
+    <% end %>
+</table>
+
+<%= will_paginate @posts%>
+</div>

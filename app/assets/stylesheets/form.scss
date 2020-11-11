@@ -1,0 +1,85 @@
+.form_input {
+  display:block;
+  height:50px;
+  width:90%;
+  margin:0 auto;
+  border:none;
+  padding-top: 10px;
+  &::placeholder{
+    -webkit-transform:translateY(0px);
+      transform:translateY(0px);
+    -webkit-transition:.5s;
+      transition:.5s;
+  }
+  &:hover,
+  &:focus,
+  &:active:focus{
+    color: $secondary_color;
+    outline:none;
+    border-bottom:1px solid $secondary_color;
+    &::placeholder{
+      color:  $secondary_color;
+      position:relative;
+      -webkit-transform:translateY(-20px);
+      transform:translateY(-20px);
+      
+    }
+  }
+}
+
+trix-editor.form_input {
+  min-height: 115px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  resize: none;
+}
+
+textarea.form_input {
+  min-height: 115px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  resize: none;
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 20px;
+  font-family: 'Open Sans', sans-serif;
+  color: #858585;
+  font-weight: lighter;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+
+.label-img {
+  position: relative;
+  z-index: 1;
+  padding-left: 43px;
+  font-family: 'Open Sans', sans-serif;
+  color: #858585;
+  font-weight: lighter;
+  -webkit-transition: .5s;
+  transition: .5s;
+  &:hover,
+  &:focus,
+  &:active:focus{
+    color: $secondary_color;
+    outline:none;
+    &::placeholder{
+      color:  $secondary_color;
+      position:relative;
+      -webkit-transform:translateY(-20px);
+      transform:translateY(-20px);
+      
+    }
+  }
+}
+
+
+select{
+  background-color: white;
+}
+

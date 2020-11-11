@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RBlog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css' %>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+      .mdc-button:not(:disabled){
+        color: #CB3317;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md shadow">
+    <div class="container">
+      <a class="navbar-brand" href="<%= root_path%>">
+        <h1>rBlog</h1>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item <%= params[:controller] == 'posts' ? 'active' : ''%>">
+            <a class="nav-link" href="<%= root_path%>">Home</a>
+          </li>
+          <li class="nav-item <%= params[:controller] == 'about' ? 'active' : ''%>">
+            <a class="nav-link" href="<%= about_path%>">About</a>
+          </li>
+          <li class="nav-item <%= params[:controller] == 'users' ? 'active' : ''%>">
+            <a class="nav-link" href="<%= new_user_path%>">Register</a>
+          </li>
+          <li class="nav-item <%= params[:controller] == 'sessions' ? 'active' : ''%>">
+            <%= link_to "Sign in with Facebook", "/auth/facebook", class: "nav-link"%>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary float-right" href="<%= admin_login_path%>">Login</a>
+          </li>
+        </ul>
+        
+        <%= render 'partials/search'%>
+
+      </div>
+    </div>
+  </nav>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+        <br>
+          <!-- Alerts & Messeges-->
+          <% if flash[:notice]%>
+            <div class="alert alert-success"><%= flash[:notice]%></div>
+          <%end%>
+
+          <% if flash[:alert]%>
+            <div class="alert alert-danger"><%= flash[:alert]%></div>
+          <%end%>
+
+
+           <%= yield %>
+
+           
+        </div>
+        <div class="col-md-4">
+          <br>
+          <%= render 'partials/sidebar'%>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="container">
+    <%= render 'partials/footer'%>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+
+  </body>
+</html>
+

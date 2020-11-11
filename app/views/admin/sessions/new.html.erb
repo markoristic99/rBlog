@@ -1,0 +1,20 @@
+<%= form_tag admin_sessions_path, :class => 'form-signin' do%>
+    <h1 class="h3 mb-3 font-weight-normal">rBlog | Admin Login</h1>
+
+    <% if flash[:notice]%>
+        <div class = "alert alert-success"><%= flash[:notice]%></div>
+    <% end %>
+
+    <% if flash[:alert]%>
+        <div class = "alert alert-danger"><%= flash[:alert]%></div>
+    <% end %>   
+
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <%= text_field_tag :email, params[:email], class:"form-control", placeholder: "Email address", id: "inputEmail", autofocus: true%>
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <%= password_field_tag :password, '', class:"form-control", placeholder: "Password", id: "inputPassword"%>
+
+    <%= submit_tag "Log in", class: "btn btn-lg btn-primary btn-block"%>
+<% end %>
+<p class="mt-2 mb-3 text-muted">&copy; 2020</p>

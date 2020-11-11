@@ -1,0 +1,33 @@
+<div class ="m-3">
+
+<h2 class=" ml-4">Users <%= link_to "Create new", new_admin_user_path, class:'btn btn-success float-right mr-4'%></h2>
+
+<br>
+<% if @users.exists? %>
+    <table class = "table table-striped shadow-sm">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Date joined</th>
+            <th>Manager actions</th>
+        </tr>
+
+        <% @users.each do |user|%>
+
+        <tr>
+            <td><%= user.name%></td>
+            <td><%= user.email%></td>
+            <td><%= user.created_at.to_time.strftime('%B %e at %l:%M %p')%></td>
+            <td><%= link_to "Edit", edit_admin_user_path(user), class: 'btn btn-warning'%> <%= link_to "Delete", admin_user_path(user), class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'}%></td>
+        </tr>
+
+        <% end %>
+    </table>
+
+    <%= will_paginate @posts%>
+    
+    <% else %>
+
+    <p class="no-posts"> There are no users </p>
+<% end %>
+</div>

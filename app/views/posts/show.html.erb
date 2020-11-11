@@ -1,0 +1,11 @@
+
+<div class="card">
+    <%= image_tag @post.image.url, width: '100%', class: "card-img-top"%>
+    <div class="card-body">
+        <h2 class="card-title page-header"><%= @post.title%></h2>
+        <h6 class="card-subtitle mb-3 text-muted"> Posted by <%= @post.user.name%> on <%= @post.created_at.to_time.strftime('%B %e at %l:%M %p')%></h6>
+        <p class="card-text"><%= @post.body%></p>
+    </div>
+</div>
+
+<%= render 'partials/comments'%>

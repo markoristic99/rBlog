@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RBlog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'admin/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+        background-image: url("<%= asset_path('background')%>");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        }
+    </style>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md">
+      <div class="container">
+        <a class="navbar-brand" href="..<%= root_path%>">
+          <h1>rBlog</h1>
+          <span>/Manager</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item <%= params[:controller] == 'admin/posts' ? 'active' : ''%>">
+              <a class="nav-link" href="<%= admin_posts_path%>">Posts</a>
+            </li>
+            <li class="nav-item <%= params[:controller] == 'admin/categories' ? 'active' : ''%>">
+              <a class="nav-link" href="<%= admin_categories_path%>">Categories</a>
+            </li>
+            <li class="nav-item <%= params[:controller] == 'admin/users' ? 'active' : ''%>">
+              <a class="nav-link" href="<%= admin_users_path%>">Users</a>
+            </li>
+          </ul>
+          <!-- default form for search
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Submit</button>
+          </form>-->
+
+          <%= render 'partials/admin/search'%>
+          
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <section>
+    
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12"> 
+
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12"> 
+            <br>
+            <div class="<%= params[:action] == 'new' || params[:action] == 'edit' || params[:action] == 'show'? 'card card-new shadow' : 'card card-body bg-light'%>">
+                <% if flash[:notice]%>
+                  <div class="alert alert-success"><%= flash[:notice]%></div>
+                <%end%>
+
+                <% if flash[:alert]%>
+                  <div class="alert alert-danger"><%= flash[:alert]%></div>
+                <%end%>
+
+                <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+      
+    <div class="container">
+      <%= render 'partials/admin/footer'%>
+    </div>
+    
+    
+    <script type= "text/javascript">
+      textarea = document.querySelector("textarea"); 
+      textarea.addEventListener('input', autoResize, false); 
+  
+    function autoResize() { 
+        this.style.height = 'auto'; 
+        this.style.height = this.scrollHeight + 'px'; 
+    }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    </body>
+  </html>
