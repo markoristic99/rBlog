@@ -17,6 +17,6 @@ class Post < ApplicationRecord
     end
 
     def as_json(options={})
-      { :title => self.title }  # Only including title for the API
+      { :title => title }  # Only including title for the API
     end
 end

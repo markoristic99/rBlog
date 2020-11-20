@@ -19,6 +19,13 @@ class Admin::SessionsController < Admin::ApplicationController
     end
   end
 
+  def oauth
+    #render :json => JSON.pretty_generate(request.env['omniauth.auth']) #used to render information from API request
+    user = User.from_omniauth(request.env["omniauth.auth"])
+    session[:user_id] = user.id
+    redirect_to root_url, notice: "Signed in!"
+  end
+
   def destroy
     session[:user_id] = nil
     redirect_to admin_login_path, :notice => "Logged out"

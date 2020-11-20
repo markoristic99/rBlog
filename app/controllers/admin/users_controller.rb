@@ -16,7 +16,7 @@ class Admin::UsersController < Admin::ApplicationController
     end
     
     if @user.save
-        ConfirmationMailer.inform(@user).deliver_now
+        EmailSenderJob.perform_later(@user)
         flash[:notice] = 'User created'
         render 'index'
     else 
@@ -65,6 +65,6 @@ class Admin::UsersController < Admin::ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :uid, :provider)
   end
 end

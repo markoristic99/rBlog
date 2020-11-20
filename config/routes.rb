@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => 'sidekiq'
   
 
-  get 'auth/:provider/callback', to: 'admin/sessions#create'
+  get 'auth/:provider/callback', to: 'admin/sessions#oauth'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'admin/sessions#destroy', as: 'signout'
 

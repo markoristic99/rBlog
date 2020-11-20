@@ -298,7 +298,6 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.2)
   mail_form
-  omniauth
   omniauth-facebook
   paperclip
   puma (~> 4.1)

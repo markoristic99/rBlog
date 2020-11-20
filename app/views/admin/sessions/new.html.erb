@@ -15,6 +15,8 @@
     <label for="inputPassword" class="sr-only">Password</label>
     <%= password_field_tag :password, '', class:"form-control", placeholder: "Password", id: "inputPassword"%>
 
-    <%= submit_tag "Log in", class: "btn btn-lg btn-primary btn-block"%>
+    <%= submit_tag "Log in", class: "btn btn-primary btn-lg"%>
+    <%= link_to "Home", root_path, class: "btn btn-primary btn-lg"%>
 <% end %>
+
 <p class="mt-2 mb-3 text-muted">&copy; 2020</p>
